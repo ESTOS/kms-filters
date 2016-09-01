@@ -374,7 +374,9 @@ delete_file (const char *fpath, const struct stat *sb, int typeflag,
 static void
 remove_recursive (const gchar * path)
 {
-  nftw (path, delete_file, 64, FTW_DEPTH | FTW_PHYS);
+  if (path) {
+    nftw (path, delete_file, 64, FTW_DEPTH | FTW_PHYS);
+  }
 }
 
 static GSList *
