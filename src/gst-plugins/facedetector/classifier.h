@@ -20,7 +20,8 @@
 
 #include <glib.h>
 
-#include <opencv/cv.h>
+#include <opencv2/imgproc/imgproc_c.h>
+#include <opencv2/objdetect/objdetect.hpp>
 
 G_BEGIN_DECLS
 
