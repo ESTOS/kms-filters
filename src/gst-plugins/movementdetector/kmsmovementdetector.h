@@ -20,7 +20,13 @@
 
 #include <gst/video/video.h>
 #include <gst/video/gstvideofilter.h>
-#include "opencv2/imgproc/imgproc_c.h"
+
+#include <opencv2/imgproc/types_c.h>
+#include <opencv2/imgproc/imgproc_c.h>
+#include "opencv2/core/version.hpp"
+#if CV_MAJOR_VERSION == 3
+#include <opencv2/core/fast_math.hpp>
+#endif
 #include <stdio.h>
 
 G_BEGIN_DECLS

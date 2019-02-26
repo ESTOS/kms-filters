@@ -42,6 +42,7 @@ public:
   virtual ~ZBarFilterImpl ();
 
   /* Next methods are automatically implemented by code generator */
+  using FilterImpl::connect;
   virtual bool connect (const std::string &eventType,
                         std::shared_ptr<EventHandler> handler);
 
@@ -57,8 +58,7 @@ protected:
   virtual void postConstructor ();
 
 private:
-
-  GstElement *zbar;
+  GstElement *zbar{};
   gulong bus_handler_id;
 
   guint64 lastTs = G_GUINT64_CONSTANT (0);

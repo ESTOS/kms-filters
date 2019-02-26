@@ -27,7 +27,7 @@ class Classifier
 {
 public:
   Classifier ();
-  ~Classifier() {};
+  ~Classifier() = default;
 
   CascadeClassifier face_cascade;
 };
@@ -42,7 +42,7 @@ static Classifier lbpClassifier = Classifier ();
 void classify_image (IplImage *img, CvSeq *facesList)
 {
   std::vector<Rect> faces;
-  Mat frame (img);
+  Mat frame (cv::cvarrToMat (img) );
   Mat frame_gray;
 
   cvtColor ( frame, frame_gray, COLOR_BGR2GRAY );
@@ -52,8 +52,8 @@ void classify_image (IplImage *img, CvSeq *facesList)
       Size (frame.cols / 20, frame.rows / 20),
       Size (frame.cols / 2, frame.rows / 2) );
 
-  for ( size_t i = 0; i < faces.size(); i++ ) {
-    CvRect aux = cvRect (faces[i].x, faces[i].y, faces[i].width, faces[i].height);
+  for (auto &face : faces) {
+    CvRect aux = cvRect (face.x, face.y, face.width, face.height);
     cvSeqPush (facesList, &aux);
   }
 
